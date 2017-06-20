@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.ssm.mapper.UserMapper">
+
+	<resultMap type="Orders" id="ordersMap">
+		<id column="id" property="id" />
+		<result column="createTime" property="createTime" />
+		<result column="description" property="description" />
+		<association property="user" javaType="user">
+			<id column="uid" property="id" />
+			<result column="username" property="username" />
+			<result column="email" property="email" />
+			<result column="password" property="password" />
+		</association>
+		<collection property="orderDetails" javaType="orderDetail">
+			<id column="od_id" property="id" />
+			<result column="goodsCount" property="goodsCount" />
+		</collection>
+		<collection property="goodses" javaType="goods">
+			<id column="gid" property="id" />
+			<result column="gname" property="gname" />
+			<result column="price" property="price" />
+		</collection>
+	</resultMap>
+	<select id="findGood_User" resultMap="ordersMap">
+		SELECT
+		goods.gname,goods.price,`user`.username,`user`.email
+		FROM
+		goods,orders,user,orderdetail
+		WHERE goods.gname LIKE '%a%'
+		AND
+		goods.price BETWEEN 1000 AND 10000
+		AND orders.uid=`user`.id
+		AND
+		orderdetail.gid=goods.id
+		AND orderdetail.oid=orders.id
+	</select>
+	<select id="findAll" resultType="user">
+		select * from user
+	</select>
+	<select id="findGoodsById" parameterType="int" resultType="goods">
+		select * from goods where id=#{id}
+	</select>
+</mapper>
