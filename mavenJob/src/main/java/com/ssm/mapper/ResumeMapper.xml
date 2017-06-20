@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.ResumeMapper">
+  <!-- insert -->
+  <insert id="insert" parameterType="Resume" >
+    insert into resume (id, resumename, uid, 
+      name, gender, brithday, 
+      height, married, experience, 
+      idaddress, educational, hobby, 
+      phone, email, address, 
+      qq, blog, get, jobtype, 
+      nearjob, workplace, money, 
+      jobwanted, studystart, studyover, 
+      school, major, photo, 
+      jobstart, jobover, companyname, 
+      companyinformation, workin, showing, 
+      trainstart, trainover, trainplace, 
+      class1, classinformation, date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{resumename,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{brithday,jdbcType=VARCHAR}, 
+      #{height,jdbcType=INTEGER}, #{married,jdbcType=TINYINT}, #{experience,jdbcType=VARCHAR}, 
+      #{idaddress,jdbcType=VARCHAR}, #{educational,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{blog,jdbcType=VARCHAR}, #{get,jdbcType=TINYINT}, #{jobtype,jdbcType=INTEGER}, 
+      #{nearjob,jdbcType=VARCHAR}, #{workplace,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{jobwanted,jdbcType=VARCHAR}, #{studystart,jdbcType=TIMESTAMP}, #{studyover,jdbcType=TIMESTAMP}, 
+      #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{jobstart,jdbcType=TIMESTAMP}, #{jobover,jdbcType=TIMESTAMP}, #{companyname,jdbcType=VARCHAR}, 
+      #{companyinformation,jdbcType=VARCHAR}, #{workin,jdbcType=VARCHAR}, #{showing,jdbcType=VARCHAR}, 
+      #{trainstart,jdbcType=TIMESTAMP}, #{trainover,jdbcType=TIMESTAMP}, #{trainplace,jdbcType=VARCHAR}, 
+      #{class1,jdbcType=VARCHAR}, #{classinformation,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <!-- update -->
+  <update id="updateResumeById" parameterType="Resume" >
+     update resume
+    set resumename = #{resumename,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      brithday = #{brithday,jdbcType=VARCHAR},
+      height = #{height,jdbcType=INTEGER},
+      married = #{married,jdbcType=TINYINT},
+      experience = #{experience,jdbcType=VARCHAR},
+      idaddress = #{idaddress,jdbcType=VARCHAR},
+      educational = #{educational,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      get = #{get,jdbcType=TINYINT},
+      jobtype = #{jobtype,jdbcType=INTEGER},
+      nearjob = #{nearjob,jdbcType=VARCHAR},
+      workplace = #{workplace,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      jobwanted = #{jobwanted,jdbcType=VARCHAR},
+      studystart = #{studystart,jdbcType=TIMESTAMP},
+      studyover = #{studyover,jdbcType=TIMESTAMP},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      jobstart = #{jobstart,jdbcType=TIMESTAMP},
+      jobover = #{jobover,jdbcType=TIMESTAMP},
+      companyname = #{companyname,jdbcType=VARCHAR},
+      companyinformation = #{companyinformation,jdbcType=VARCHAR},
+      workin = #{workin,jdbcType=VARCHAR},
+      showing = #{showing,jdbcType=VARCHAR},
+      trainstart = #{trainstart,jdbcType=TIMESTAMP},
+      trainover = #{trainover,jdbcType=TIMESTAMP},
+      trainplace = #{trainplace,jdbcType=VARCHAR},
+      class1 = #{class1,jdbcType=VARCHAR},
+      classinformation = #{classinformation,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
