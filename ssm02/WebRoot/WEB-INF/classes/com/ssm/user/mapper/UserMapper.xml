@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.user.mapper.UserMapper">
+	<resultMap type="UserGoodsVo" id="UserGoodsVoMap">
+		<collection property="users" javaType="user">
+			<id column="uid" property="id" />
+			<result column="username" property="username" />
+			<result column="email" property="email" />
+			<result column="password" property="password" />
+		</collection>
+		<collection property="goods" javaType="goods">
+			<id column="id" property="id" />
+			<result column="gname" property="gname" />
+			<result column="price" property="price" />
+		</collection>
+	</resultMap>
+	<select id="findGoods_User" parameterType="goodsE" resultMap="UserGoodsVoMap">
+		SELECT
+		goods.*,`user`.username,`user`.email
+		FROM
+		goods,orders,user,orderdetail
+		WHERE orders.uid=`user`.id
+		AND
+		orderdetail.gid=goods.id
+		AND orderdetail.oid=orders.id
+		<if test="name!=null">
+			AND goods.gname LIKE '%${name}%'
+		</if>
+		<if test="minprice!=null and maxprice!=null">
+			AND goods.price BETWEEN #{minprice} AND #{maxprice}
+		</if>
+	</select>
+	<delete id="deleteGoods" parameterType="int">
+		delete from goods where id=#{id} 
+	</delete>
+	<select id="findGoodsById" parameterType="int" resultType="goods">
+		select * from goods where id=#{id}
+	</select>
+	<update id="updateGoods" parameterType="goods">
+		update goods set 
+	</update>
+</mapper>
